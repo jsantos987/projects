@@ -1,4 +1,9 @@
+
+
 #!/usr/bin/env python
+
+# Working tic_tac_toe  game.
+# Enjoy
 
 from IPython.display import clear_output
 
@@ -6,7 +11,7 @@ input = raw_input
 
 def display_board(board):
     clear_output()  # Remember, this only works in jupyter!
-    
+
     print('   |   |')
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('   |   |')
@@ -24,7 +29,7 @@ def display_board(board):
 
 def player_input():
     marker = ''
-    
+
     while not (marker == 'X' or marker == 'O'):
         marker = input('Player 1: Do you want to be X or O? ').upper()
 
@@ -42,7 +47,7 @@ def place_marker(board, marker, position):
 
 
 def win_check(board,mark):
-    
+
     return ((board[7] == mark and board[8] == mark and board[9] == mark) or # across the top
     (board[4] == mark and board[5] == mark and board[6] == mark) or # across the middle
     (board[1] == mark and board[2] == mark and board[3] == mark) or # across the bottom
@@ -66,7 +71,7 @@ def choose_first():
 
 
 def space_check(board, position):
-    
+
     return board[position] == ' '
 
 
@@ -79,16 +84,16 @@ def full_board_check(board):
 
 def player_choice(board):
     position = 0
-    
+
     while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board, position):
         position = int(input('Choose your next position: (1-9) '))
-        
+
     return position
 
 
 
 def replay():
-    
+
     return input('Do you want to play again? Enter Yes or No: ').lower().startswith('y')
 
 
@@ -100,9 +105,9 @@ while True:
     player1_marker, player2_marker = player_input()
     turn = choose_first()
     print(turn + ' will go first.')
-    
+
     play_game = input('Are you ready to play? Enter Yes or No.')
-    
+
     if play_game.lower()[0] == 'y':
         game_on = True
     else:
@@ -111,7 +116,7 @@ while True:
     while game_on:
         if turn == 'Player 1':
             # Player1's turn.
-            
+
             display_board(theBoard)
             position = player_choice(theBoard)
             place_marker(theBoard, player1_marker, position)
@@ -130,7 +135,7 @@ while True:
 
         else:
             # Player2's turn.
-            
+
             display_board(theBoard)
             position = player_choice(theBoard)
             place_marker(theBoard, player2_marker, position)
